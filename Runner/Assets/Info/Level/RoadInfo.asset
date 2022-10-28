@@ -12,11 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd8e8ed26805571498ed5583ba0d904e, type: 3}
   m_Name: RoadInfo
   m_EditorClassIdentifier: Assembly-CSharp:RoadInfo:RoadInfo
-  _numPoolRoads: 10
-  _numRoads: 4
-  _numObstacles: 5
+  _numPoolRoads: 7
+  _numRoads: 3
   _width: 2
-  _length: 20
+  _length: 30
   _roadPrefab: {fileID: 301192295775492791, guid: cc95a7fc230c32e44a4a58fb684b01d1, type: 3}
   _roadPrefab2: {fileID: 2002023027225980066, guid: 3b29674c9e50ae447bf9ce891c7cfd27, type: 3}
   _empty: {fileID: 7621823558624183814, guid: ad547778b566737469cfdacb4e4668b4, type: 3}

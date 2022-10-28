@@ -9,7 +9,6 @@ namespace Level
     {
         public int _numPoolRoads;
         public int _numRoads;
-        public int _numObstacles;
         public float _width;
         public float _length;
         public GameObject _roadPrefab;

@@ -12,7 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50126a327d3d6144cb4b55c3e0670ee8, type: 3}
   m_Name: ObstaclesInfo
   m_EditorClassIdentifier: 
+  _minNumObstacles: 3
+  _maxNumObstacles: 4
+  _empty: {fileID: 7621823558624183814, guid: 0582fcc0c76317a44bdca11d0aa0bc14, type: 3}
   _bottomObstacles:
   - {fileID: 1651106677268116354, guid: a200b7ac19fa843408b2ebf5ab0e0290, type: 3}
   _topObstacles:
   - {fileID: 5794293988897327500, guid: af407d16f920bdf48bfcd11b0067b4d2, type: 3}
+  _fullObstacles:
+  - {fileID: 5794293988897327500, guid: ca1ed1137288abb40aa7c768b3d7420f, type: 3}
+  _value: 04000000020000000200000001000000
