@@ -69,6 +69,7 @@ public abstract class Platform
 
     public static System.Action _Jump;
     public static System.Action<int> _Displacement;
+    public static System.Action _Slide;
 
     protected void ResetSwipe(Vector2 endPos)
     {
@@ -93,6 +94,7 @@ public abstract class Platform
             else
             {
                 Debug.Log("Down");
+                _Slide?.Invoke();
             }
         }
     }
