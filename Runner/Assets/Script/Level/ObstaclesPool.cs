@@ -1,4 +1,3 @@
-using Newtonsoft.Json.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -50,6 +49,14 @@ namespace Level
                 _obstacles[i].Activate(new Vector3(0, 0, ((i * shift) - (_length / 2f) + (shift / 2f)) / _parent.transform.localScale.z));
             }
             for(int i = rand; i < _obstacles.Count; i++)
+            {
+                _obstacles[i]._parent.SetActive(false);
+            }
+        }
+
+        public void Deactivate()
+        {
+            for (int i = 0; i < _obstacles.Count; i++)
             {
                 _obstacles[i]._parent.SetActive(false);
             }

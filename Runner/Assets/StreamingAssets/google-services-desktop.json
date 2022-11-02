@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "651443957425",
+    "firebase_url": "https://runner-77ff0-default-rtdb.firebaseio.com",
+    "project_id": "runner-77ff0",
+    "storage_bucket": "runner-77ff0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:651443957425:android:682e778df29cd06144fc90",
+        "android_client_info": {
+          "package_name": "com.Bogdan.Runner"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "651443957425-bh64iaqjg3287h1d95d1999q9527qnp9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBSn_E8AMOLE4u8rkFO_ve6PJ5BxjzhpBA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "651443957425-bh64iaqjg3287h1d95d1999q9527qnp9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
