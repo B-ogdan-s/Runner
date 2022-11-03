@@ -14,6 +14,7 @@ public class Facebookauth : MonoBehaviour
     public static Action _CloseUi;
     public static Action _SetName;
     public static Action<int> _SetRecord;
+    public static Action<int> _SetCoins;
 
     //FirebaseAuth auth;
     private void Awake()
@@ -116,17 +117,22 @@ public class Facebookauth : MonoBehaviour
 
     private async void UserInfo()
     {
-        var s = Database.ReadName();
+        var n = Database.ReadName();
         var r = Database.ReadPoints();
-        await Task.WhenAll(s);
+        var c = Database.ReadCoins();
+        await Task.WhenAll(n, r, c);
 
-        if (s.Result == null)
+        if (n.Result == null)
         {
             _SetName?.Invoke();
         }
-        if(r.Result == null)
+        if (r.Result == null)
         {
             _SetRecord?.Invoke(0);
+        }
+        if (c.Result == null)
+        {
+            _SetCoins?.Invoke(0);
         }
     }
 }

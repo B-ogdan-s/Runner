@@ -34,17 +34,19 @@ public class RegistrationUI : MonoBehaviour
             else
             {
                 _name.text = "";
+                _nameText = "";
             }
         });
         _password.onEndEdit.AddListener((string value) =>
         {
-            if (value.Length > 6 && value.Length < 20)
+            if (value.Length >= 6 && value.Length <= 20)
             {
                 _passwordText = value;
             }
             else
             {
                 _password.text = "";
+                _passwordText = "";
             }
         });
         _password.onEndEdit.AddListener((string value) =>
@@ -56,6 +58,8 @@ public class RegistrationUI : MonoBehaviour
             else
             {
                 _password2.text = "";
+                _password2Text = "";
+
             }
         });
         _registrationButton.onClick.AddListener(() =>

@@ -24,14 +24,17 @@ namespace Player
 
         private void Awake()
         {
-            Platform._Slide += Slide;
-            Platform._Jump += Jump;
-            CheckIsGround._Check += JumpCheck;
             StartingState._Enter += Disable;
             StartingState._Exit += Enable;
             DeathingState._Enter += PlayerDeath;
             DeathingState._Exit += PlayerRestart;
+        }
 
+        private void OnEnable()
+        {
+            Platform._Slide += Slide;
+            Platform._Jump += Jump;
+            CheckIsGround._Check += JumpCheck;
         }
         private void Update()
         {
@@ -88,7 +91,6 @@ namespace Player
         }
         private void PlayerRestart()
         {
-            Debug.Log("2");
             GetComponent<BoxCollider>().enabled = true;
             _animator.SetBool("Run", false);
             _animator.SetTrigger("Idel");
@@ -104,11 +106,16 @@ namespace Player
             this.enabled = true;
             _animator.SetBool("Run", true);
         }
-        private void OnDestroy()
+
+        private void OnDisable()
         {
             Platform._Jump -= Jump;
             Platform._Slide -= Slide;
             CheckIsGround._Check -= JumpCheck;
+        }
+
+        private void OnDestroy()
+        {
             StartingState._Enter -= Disable;
             StartingState._Exit -= Enable;
             DeathingState._Enter -= PlayerDeath;

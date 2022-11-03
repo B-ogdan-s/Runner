@@ -7,6 +7,9 @@ namespace Level
 {
     public class RoadPool : MonoBehaviour
     {
+        [SerializeField] GameObject _leftWall;
+        [SerializeField] GameObject _rightWall;
+        [SerializeField] GameObject _ceiling;
         [SerializeField] RoadInfo _info;
         private List<Road> roads = new List<Road>();
 
@@ -34,12 +37,26 @@ namespace Level
                 GameObject obj = MonoBehaviour.Instantiate(_info._empty);
                 obj.transform.SetParent(this.transform);
                 obj.transform.localPosition = new Vector3(0, 0, _info._length * i);
+
                 BoxCollider col = obj.GetComponent<BoxCollider>();
                 col.size = new Vector3(_info._width * _info._numRoads, 2, _info._length);
                 col.center = new Vector3(0, 0, 0);
+
                 roads.Add(new Road(obj.transform, _info, startPos));
 
                 obj.GetComponent<RoadManager>()._Trigger += roads[i].Disable;
+                GameObject wall = MonoBehaviour.Instantiate(_leftWall);
+                wall.transform.SetParent(obj.transform);
+                wall.transform.localPosition = new Vector3(startPos - _info._width / 2f, 0, 0);
+                wall = MonoBehaviour.Instantiate(_rightWall);
+                wall.transform.SetParent(obj.transform);
+                wall.transform.localPosition = new Vector3(startPos + _info._width * _info._numRoads - _info._width / 2f, 0, 0);
+                for(int j = 0; j < _info._numRoads; j++)
+                {
+                    GameObject ceiling = MonoBehaviour.Instantiate(_ceiling);
+                    ceiling.transform.SetParent(obj.transform);
+                    ceiling.transform.localPosition = new Vector3(startPos + j * _info._width, 0, 0);
+                }
             }
             for(int i = 1; i < _info._numPoolRoads; i++)
             {

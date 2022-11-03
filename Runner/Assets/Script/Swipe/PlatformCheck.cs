@@ -100,7 +100,6 @@ public abstract class Platform
         {
             if(vector.x > 0)
             {
-                Debug.Log("Right");
                 _Displacement(1);
             }
             else

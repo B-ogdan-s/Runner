@@ -71,6 +71,7 @@ namespace Level
             public List<GameObject> _fullObstacles = new List<GameObject>();
             private int[] _value;
 
+
             public Obstacle(GameObject parent, ObstaclesInfo obstaclesInfo)
             {
                 _value = obstaclesInfo._value;
@@ -108,8 +109,10 @@ namespace Level
 
             public void Activate(Vector3 newPos)
             {
+
                 _parent.transform.localPosition = newPos;
                 _parent.SetActive(true);
+
 
                 int maxRand = 0;
 
@@ -149,7 +152,13 @@ namespace Level
 
             public void Variant(List<GameObject> var)
             {
-                var[0].SetActive(true);
+                foreach(GameObject obj in var)
+                {
+                    obj.SetActive(false);
+                }
+
+                int rand = Random.Range(0, var.Count);
+                var[rand].SetActive(true);
             }
 
             public void Disable()

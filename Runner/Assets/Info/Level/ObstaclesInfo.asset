@@ -16,9 +16,11 @@ MonoBehaviour:
   _maxNumObstacles: 4
   _empty: {fileID: 7621823558624183814, guid: 0582fcc0c76317a44bdca11d0aa0bc14, type: 3}
   _bottomObstacles:
-  - {fileID: 1651106677268116354, guid: a200b7ac19fa843408b2ebf5ab0e0290, type: 3}
+  - {fileID: 7543510422100842848, guid: bcf82ff1edf86b440b3298945fd39a41, type: 3}
+  - {fileID: 1168882045753255402, guid: 8823a3d4118334649955739e33f95091, type: 3}
   _topObstacles:
-  - {fileID: 5794293988897327500, guid: af407d16f920bdf48bfcd11b0067b4d2, type: 3}
+  - {fileID: 884794185344979587, guid: 7b65fc9461476cc459c312c0f1aa38c4, type: 3}
+  - {fileID: 7096167451877738063, guid: 93fbe3f9c7d913f4f84a105a52b15d88, type: 3}
   _fullObstacles:
-  - {fileID: 5794293988897327500, guid: ca1ed1137288abb40aa7c768b3d7420f, type: 3}
+  - {fileID: 4590153414484555253, guid: 8de592dd0c99dd046a09441a9dee7b34, type: 3}
   _value: 05000000020000000200000001000000

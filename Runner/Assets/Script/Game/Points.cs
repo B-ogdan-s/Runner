@@ -44,6 +44,6 @@ public class Points : MonoBehaviour
 
     private void OnDestroy()
     {
-        StartingState._Enter += NewRecord;
+        StartingState._Enter -= NewRecord;
     }
 }

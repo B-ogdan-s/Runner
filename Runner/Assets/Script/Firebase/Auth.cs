@@ -16,6 +16,8 @@ public class Auth : MonoBehaviour
 
     public static Action _SetName;
     public static Action<int> _SetRecord;
+    public static Action<int> _SetCoins;
+
 
 
     private void Start()
@@ -108,6 +110,7 @@ public class Auth : MonoBehaviour
             }
             _SetName?.Invoke();
             _SetRecord?.Invoke(0);
+            _SetCoins?.Invoke(0);
             _CloseRegistory?.Invoke();
         }
     }

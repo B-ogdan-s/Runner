@@ -9,7 +9,7 @@ public class CheckIsGround : MonoBehaviour
     {
         if(other.GetComponent<RoadCheck>() != null)
         {
-            _Check();
+            _Check?.Invoke();
         }
     }
 }
