@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] private Animator _playerAnimator;
 
-    [SerializeField] private Button _playerButton;
+    //[SerializeField] private Button _playerButton;
 
     private StateMashine _statemashine;
 
@@ -18,11 +18,11 @@ public class GameManager : MonoBehaviour
         _statemashine = new StateMashine(new StartingState());
         Obstacle._Death += Death;
         _deathCheck = true;
+    }
 
-        _playerButton.onClick.AddListener(() =>
-        {
-            _statemashine.SetState(new RunningState());
-        });
+    public void PlayStart()
+    {
+        _statemashine.SetState(new RunningState());
     }
 
     private void Death()

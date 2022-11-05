@@ -8,13 +8,15 @@ namespace Player
     public class Player : MonoBehaviour
     {
         [SerializeField, Min(0.1f)] private float _gravityControl;
-        [SerializeField] private Animator _animator;
+        [SerializeField] private GameObject _player;
         [SerializeField] private float _accelerationMove = 1;
 
         private bool _isJump = true;
         private bool _isSlide = true;
         private float _accelerationGravity = 1;
         private Coroutine _coroutine;
+
+        private Animator _animator;
 
         public static System.Action<float> _Gravity;
         public static System.Action<float> _Move;
@@ -28,6 +30,8 @@ namespace Player
             StartingState._Exit += Enable;
             DeathingState._Enter += PlayerDeath;
             DeathingState._Exit += PlayerRestart;
+
+            _animator = _player.GetComponentInChildren<Animator>();
         }
 
         private void OnEnable()

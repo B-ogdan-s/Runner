@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0e871ccad8ae6847979914aafefdc27, type: 3}
+  m_Name: Standart
+  m_EditorClassIdentifier: 
+  _content: {fileID: 6454849954469500341, guid: 72f1595b92b4a924280532a800a37234, type: 3}
+  _name: Standart
+  _price: 0
+  _buy: 1
+  _use: 1

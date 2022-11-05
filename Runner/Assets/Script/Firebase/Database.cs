@@ -18,6 +18,7 @@ public class Database : MonoBehaviour
         Facebookauth._SetCoins += SetCoins;
         Points._NewRecord += SetRecord;
         Coins._NewCoins += SetCoins;
+        Store._Save += SetBuy;
         _databaseReference = FirebaseDatabase.DefaultInstance.RootReference;
         DontDestroyOnLoad(this);
     }
@@ -34,6 +35,11 @@ public class Database : MonoBehaviour
     {
         StartCoroutine(CR_SetRecord(value));
     }
+    private void SetBuy(string name, bool value)
+    {
+        StartCoroutine(CR_SetBuy(name, value));
+    }
+
     public async static Task<string> ReadName()
     {
         var snapshot = _databaseReference.Child("Users").Child(Auth._user.UserId).Child("Name").GetValueAsync();
@@ -73,6 +79,21 @@ public class Database : MonoBehaviour
 
         return snapshot.Result.Value.ToString();
     }
+    public async static Task<bool> ReadBuy(string name)
+    {
+        var snapshot = _databaseReference.Child("Users").Child(Auth._user.UserId).Child("Buy").Child(name).GetValueAsync();
+        await snapshot;
+
+        if (snapshot.Result.Value == null)
+        {
+            return false;
+        }
+
+
+        return (bool)snapshot.Result.Value;
+    }
+
+
     private IEnumerator CR_SetNam()
     {
         var loginTask = _databaseReference.Child("Users").Child(Auth._user.UserId).Child("Name").SetValueAsync(Auth._user.DisplayName);
@@ -88,6 +109,11 @@ public class Database : MonoBehaviour
         var loginTask = _databaseReference.Child("Users").Child(Auth._user.UserId).Child("Record").SetValueAsync(points);
         yield return new WaitUntil(predicate: () => loginTask.IsCanceled);
     }
+    private IEnumerator CR_SetBuy(string name, bool value)
+    {
+        var loginTask = _databaseReference.Child("Users").Child(Auth._user.UserId).Child("Buy").Child(name).SetValueAsync(value);
+        yield return new WaitUntil(predicate: () => loginTask.IsCanceled);
+    }
 
     private void OnDestroy()
     {
@@ -101,5 +127,7 @@ public class Database : MonoBehaviour
         Facebookauth._SetName -= SetName;
         Facebookauth._SetRecord -= SetRecord;
         Facebookauth._SetCoins -= SetCoins;
+
+        Store._Save -= SetBuy;
     }
 }
