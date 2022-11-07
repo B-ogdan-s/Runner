@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _content: {fileID: 6454849954469500341, guid: 72f1595b92b4a924280532a800a37234, type: 3}
   _name: Standart
+  _id: 0
   _price: 0
   _buy: 1
   _use: 1

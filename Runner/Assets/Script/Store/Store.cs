@@ -11,16 +11,20 @@ public class Store : MonoBehaviour
     [SerializeField] private Transform _player;
     [SerializeField] private ContentInfo[] _contentInfos;
     [SerializeField] private float _shift;
+    [SerializeField] private StoreUI _storeUI;
+    [SerializeField] private Coins _coins;
 
     int _num = 0;
 
     public static System.Action<string, bool> _Save;
+    public static System.Action<Animator> _SetAnimator;
+    public static System.Action<int> _SaveContant;
 
     private GameObject[] _playerModel;
 
     private void Awake()
     {
-        StoreUI._Swipe += NextContent;
+        _storeUI._Swipe += NextContent;
 
         for (int i = 0; i < _contentInfos.Length; i++)
         {
@@ -42,21 +46,32 @@ public class Store : MonoBehaviour
             _playerModel[i].transform.localPosition = Vector3.zero;
             _playerModel[i].transform.localEulerAngles = Vector3.zero;
             _playerModel[i].SetActive(false);
+            _contentInfos[i]._use = false;
         }
-        _playerModel[0].SetActive(true);
 
 
     }
 
     private async void Start()
     {
-        for(int i = 0; i < _contentInfos.Length; i++)
+        var id = Database.ReadApply();
+
+        Debug.Log("Yes        " + id);
+        await id;
+
+        for (int i = 0; i < _contentInfos.Length; i++)
         {
             var b = Database.ReadBuy(_contentInfos[i]._name);
-
-            await Task.WhenAll(b);
-
+            await b;
             _contentInfos[i]._buy = b.Result;
+
+            if (_contentInfos[i]._id == id.Result)
+            {
+                _playerModel[i].SetActive(true);
+                _contentInfos[i]._use = true;
+                _storeUI.NextContent(_contentInfos[i]);
+                _SetAnimator?.Invoke(_playerModel[i].GetComponent<Animator>());
+            }
         }
     }
 
@@ -72,13 +87,32 @@ public class Store : MonoBehaviour
 
     public void SaveStore()
     {
-        _contentInfos[_num]._buy = true;
-        _Save?.Invoke(_contentInfos[_num]._name, true);
-        
+        if (!_contentInfos[_num]._buy)
+        {
+            if (_coins.Conins < _contentInfos[_num]._price)
+                return;
+
+            _coins.NewCoins(_coins.Conins - _contentInfos[_num]._price);
+            _contentInfos[_num]._buy = true;
+            _Save?.Invoke(_contentInfos[_num]._name, true);
+            _storeUI.NextContent(_contentInfos[_num]);
+        }
+        else
+        {
+            for (int i = 0; i < _contentInfos.Length; i++)
+            {
+                _contentInfos[i]._use = false;
+                _playerModel[i].SetActive(false);
+            }
+            _contentInfos[_num]._use = true;
+            _playerModel[_num].SetActive(true);
+            _SaveContant?.Invoke(_contentInfos[_num]._id);
+            _SetAnimator?.Invoke(_playerModel[_num].GetComponent<Animator>());
+        }
     }
 
     private void OnDestroy()
     {
-        StoreUI._Swipe -= NextContent;
+        _storeUI._Swipe -= NextContent;
     }
 }

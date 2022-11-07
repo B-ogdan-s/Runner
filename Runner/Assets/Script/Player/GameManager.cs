@@ -5,10 +5,6 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private Animator _playerAnimator;
-
-    //[SerializeField] private Button _playerButton;
-
     private StateMashine _statemashine;
 
     private bool _deathCheck = true;

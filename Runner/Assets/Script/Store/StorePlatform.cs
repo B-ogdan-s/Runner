@@ -12,7 +12,6 @@ public class StorePlatform : MonoBehaviour
 
     private void OnEnable()
     {
-        Debug.Log("Yes");
         StoreUI._Open += Open;
         StoreUI._Close += Close;
     }
@@ -40,7 +39,6 @@ public class StorePlatform : MonoBehaviour
     private void OnDisable()
     {
 
-        Debug.Log("nou");
         StoreUI._Open -= Open;
         StoreUI._Close -= Close;
     }

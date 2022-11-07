@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _content: {fileID: 6454849954469500341, guid: 2939de44cdf2e9348868524946ee1428, type: 3}
   _name: Black-While
+  _id: 1
   _price: 100
   _buy: 0
   _use: 0

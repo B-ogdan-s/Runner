@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _content: {fileID: 6454849954469500341, guid: a381a992eb848e24d9ed7f669b9cda57, type: 3}
   _name: Black-Green
+  _id: 2
   _price: 150
   _buy: 0
   _use: 0

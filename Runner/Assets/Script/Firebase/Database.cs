@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Firebase.Database;
 using System.Threading.Tasks;
+using Unity.VisualScripting;
 
 public class Database : MonoBehaviour
 {
@@ -19,6 +20,7 @@ public class Database : MonoBehaviour
         Points._NewRecord += SetRecord;
         Coins._NewCoins += SetCoins;
         Store._Save += SetBuy;
+        Store._SaveContant += SetApply;
         _databaseReference = FirebaseDatabase.DefaultInstance.RootReference;
         DontDestroyOnLoad(this);
     }
@@ -38,6 +40,10 @@ public class Database : MonoBehaviour
     private void SetBuy(string name, bool value)
     {
         StartCoroutine(CR_SetBuy(name, value));
+    }
+    private void SetApply(int id)
+    {
+        StartCoroutine(CR_SetApply(id));
     }
 
     public async static Task<string> ReadName()
@@ -92,6 +98,19 @@ public class Database : MonoBehaviour
 
         return (bool)snapshot.Result.Value;
     }
+    public async static Task<int> ReadApply()
+    {
+        var snapshot = _databaseReference.Child("Users").Child(Auth._user.UserId).Child("Apply").GetValueAsync();
+        await snapshot;
+
+        if (snapshot.Result.Value == null)
+        {
+            return 0;
+        }
+        Debug.Log(snapshot.Result.Value);
+
+        return snapshot.Result.Value.ConvertTo<int>();
+    }
 
 
     private IEnumerator CR_SetNam()
@@ -114,6 +133,11 @@ public class Database : MonoBehaviour
         var loginTask = _databaseReference.Child("Users").Child(Auth._user.UserId).Child("Buy").Child(name).SetValueAsync(value);
         yield return new WaitUntil(predicate: () => loginTask.IsCanceled);
     }
+    private IEnumerator CR_SetApply(int id)
+    {
+        var loginTask = _databaseReference.Child("Users").Child(Auth._user.UserId).Child("Apply").SetValueAsync(id);
+        yield return new WaitUntil(predicate: () => loginTask.IsCanceled);
+    }
 
     private void OnDestroy()
     {
@@ -129,5 +153,6 @@ public class Database : MonoBehaviour
         Facebookauth._SetCoins -= SetCoins;
 
         Store._Save -= SetBuy;
+        Store._SaveContant -= SetApply;
     }
 }

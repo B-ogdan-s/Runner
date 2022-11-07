@@ -30,10 +30,15 @@ namespace Player
             StartingState._Exit += Enable;
             DeathingState._Enter += PlayerDeath;
             DeathingState._Exit += PlayerRestart;
-
-            _animator = _player.GetComponentInChildren<Animator>();
+            Store._SetAnimator += SetAnimator;
         }
 
+        /*
+        private void Start()
+        {
+            _animator = _player.GetComponentInChildren<Animator>();
+        }
+        */
         private void OnEnable()
         {
             Platform._Slide += Slide;
@@ -44,6 +49,11 @@ namespace Player
         {
             _Gravity?.Invoke(_gravityControl * _accelerationGravity);
             _Move?.Invoke(_accelerationMove);
+        }
+
+        private void SetAnimator(Animator animator)
+        {
+            _animator = animator;
         }
 
         private void Jump()
@@ -124,6 +134,8 @@ namespace Player
             StartingState._Exit -= Enable;
             DeathingState._Enter -= PlayerDeath;
             DeathingState._Exit -= PlayerRestart;
+
+            Store._SetAnimator -= SetAnimator;
         }
     }
 }

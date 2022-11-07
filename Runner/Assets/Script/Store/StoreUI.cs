@@ -16,7 +16,7 @@ public class StoreUI : MonoBehaviour
     public static System.Action _Open;
     public static System.Action _Close;
 
-    public static System.Func<int, ContentInfo> _Swipe;
+    public System.Func<int, ContentInfo> _Swipe;
 
     private float _startPos;
 
@@ -41,25 +41,24 @@ public class StoreUI : MonoBehaviour
             else
                 info = _Swipe?.Invoke(1);
 
-            _name.text = info._name;
+            NextContent(info);
+        }
+    }
 
-            if(info._price != 0)
-            {
-                _price.text = info._price.ToString();
-            }
-            else
-            {
-                _price.text = "";
-            }
+    public void NextContent(ContentInfo info)
+    {
+        _name.text = info._name;
 
-            if(info._buy)
-            {
-                _button.GetComponentInChildren<TextMeshProUGUI>().text = "Apply";
-            }
-            else
-            {
-                _button.GetComponentInChildren<TextMeshProUGUI>().text = "Buy";
-            }
+
+        if (info._buy)
+        {
+            _price.text = "";
+            _button.GetComponentInChildren<TextMeshProUGUI>().text = "Apply";
+        }
+        else
+        {
+            _price.text = info._price.ToString();
+            _button.GetComponentInChildren<TextMeshProUGUI>().text = "Buy";
         }
     }
 

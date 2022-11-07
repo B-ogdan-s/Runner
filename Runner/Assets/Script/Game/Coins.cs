@@ -12,6 +12,8 @@ public class Coins : MonoBehaviour
     private int _coins;
     private int _addCoins;
 
+    public int Conins => _coins;
+
     public static System.Action<int> _NewCoins;
 
     private async void Start()
@@ -36,9 +38,21 @@ public class Coins : MonoBehaviour
     private void AddCoins()
     {
         _coins += _addCoins;
-        _NewCoins?.Invoke(_coins);
+        SaveCoins();
         _coinsText.text = _coins.ToString();
         _addCoins = 0;
+    }
+
+    public void NewCoins(int newCoins)
+    {
+        _coins = newCoins;
+        _coinsText.text = _coins.ToString();
+        SaveCoins();
+    }
+
+    public void SaveCoins()
+    {
+        _NewCoins?.Invoke(_coins);
     }
 
     private void OnDestroy()

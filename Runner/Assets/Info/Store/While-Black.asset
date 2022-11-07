@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _content: {fileID: 6454849954469500341, guid: ea2146163f91ebe4cb18e9895b50eaa4, type: 3}
   _name: While-Black
+  _id: 3
   _price: 100
   _buy: 0
   _use: 0
