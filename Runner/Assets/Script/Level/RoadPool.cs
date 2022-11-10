@@ -45,6 +45,7 @@ namespace Level
                 roads.Add(new Road(obj.transform, _info, startPos));
 
                 obj.GetComponent<RoadManager>()._Trigger += roads[i].Disable;
+
                 GameObject wall = MonoBehaviour.Instantiate(_leftWall);
                 wall.transform.SetParent(obj.transform);
                 wall.transform.localPosition = new Vector3(startPos - _info._width / 2f, 0, 0);
@@ -122,9 +123,10 @@ namespace Level
 
         public void Activate()
         {
+            ObstaclesPool._poolVariant.Clear();
             foreach (var obstacle in _obstaclesPool)
             {
-                obstacle.Activate();
+                obstacle.Activate(_inf._numRoads);
             }
         }
         public void Disable()

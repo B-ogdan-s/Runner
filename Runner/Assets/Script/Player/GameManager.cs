@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         _statemashine = new StateMashine(new StartingState());
-        Obstacle._Death += Death;
+        PlayerCollider._Death += Death;
         _deathCheck = true;
     }
 
@@ -38,6 +38,6 @@ public class GameManager : MonoBehaviour
 
     private void OnDestroy()
     {
-        Obstacle._Death -= Death;
+        PlayerCollider._Death -= Death;
     }
 }

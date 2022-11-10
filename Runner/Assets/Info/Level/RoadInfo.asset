@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: RoadInfo
   m_EditorClassIdentifier: Assembly-CSharp:RoadInfo:RoadInfo
   _numPoolRoads: 3
-  _numRoads: 4
+  _numRoads: 3
   _width: 1.5
   _length: 40
   _roadPrefab: {fileID: 301192295775492791, guid: cc95a7fc230c32e44a4a58fb684b01d1, type: 3}

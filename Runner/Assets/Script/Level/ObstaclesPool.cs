@@ -13,6 +13,10 @@ namespace Level
         private int _minNum;
         private int _maxNum;
 
+
+        public static List<int> _poolVariant = new List<int>();
+
+
         private List<Obstacle> _obstacles = new List<Obstacle>();
 
         public ObstaclesPool(Transform parent, RoadInfo info)
@@ -38,9 +42,32 @@ namespace Level
             }
         }
 
-        public void Activate()
+        public void Activate(int numRoad)
         {
-            int rand = Random.Range(_minNum, _maxNum + 1);
+            int rand = 0;
+            bool check = true;
+            do
+            {
+                rand = Random.Range(_minNum, _maxNum + 1);
+                int var = 0;
+                for (int i = 0; i < _poolVariant.Count; i++)
+                {
+                    if(rand == _poolVariant[i])
+                    {
+                        var++;
+                    }
+                }
+                if(var < numRoad-1)
+                {
+                    check = false;
+                    _poolVariant.Add(rand);
+
+                }
+
+            } while (check);
+
+            Debug.Log(rand);
+
             float shift = _length / rand;
 
             for(int i = 0; i < rand; i++)

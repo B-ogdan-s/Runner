@@ -19,7 +19,7 @@ public class Coins : MonoBehaviour
     private async void Start()
     {
         DeathingState._Enter += AddCoins;
-        Coin._AddCoin += AddCoin;
+        PlayerCollider._AddCoin += AddCoin;
         var s = Database.ReadCoins();
         await Task.WhenAll(s);
 
@@ -57,7 +57,7 @@ public class Coins : MonoBehaviour
 
     private void OnDestroy()
     {
-        Coin._AddCoin -= AddCoin;
+        PlayerCollider._AddCoin -= AddCoin;
         StartingState._Enter -= AddCoins;
     }
 

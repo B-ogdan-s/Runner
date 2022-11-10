@@ -9,6 +9,7 @@ namespace Player
     {
         [SerializeField, Min(0.1f)] private float _gravityControl;
         [SerializeField] private GameObject _player;
+        [SerializeField] private CapsuleCollider _capsuleCollider;
         [SerializeField] private float _accelerationMove = 1;
 
         private bool _isJump = true;
@@ -50,7 +51,6 @@ namespace Player
             _Gravity?.Invoke(_gravityControl * _accelerationGravity);
             _Move?.Invoke(_accelerationMove);
         }
-
         private void SetAnimator(Animator animator)
         {
             _animator = animator;
@@ -62,6 +62,10 @@ namespace Player
             {
                 if(_coroutine != null)
                     StopCoroutine(_coroutine);
+
+                _capsuleCollider.direction = 1;
+
+                _capsuleCollider.center = new Vector3(0, 0.5f, 0);
 
                 _accelerationGravity = 1;
                 _isSlide = true;
@@ -81,12 +85,15 @@ namespace Player
 
                 _isSlide = false;
                 _animator.SetTrigger("Slide");
+                _capsuleCollider.center = new Vector3(0, 0, 0);
+                _capsuleCollider.direction = 2;
                 _coroutine = StartCoroutine(CR_Slide());
             }
         }
 
         private void JumpCheck()
         {
+            _capsuleCollider.center = new Vector3(0, 0, 0);
             _isJump = true;
         }
 
@@ -95,6 +102,8 @@ namespace Player
             yield return new WaitForSeconds(_animator.GetCurrentAnimatorStateInfo(0).length);
             _accelerationGravity = 1;
             _isSlide = true;
+            yield return new WaitForSeconds(0.6f);
+            _capsuleCollider.direction = 1;
         }
 
         private void PlayerDeath()
@@ -113,6 +122,8 @@ namespace Player
 
         private void Disable()
         {
+            _isJump = true;
+            _isSlide = true;
             this.enabled = false;
         }
         private void Enable()

@@ -8,6 +8,7 @@ public class Store : MonoBehaviour
 {
     [SerializeField] private Camera _camera;
     [SerializeField] private GameObject _platform;
+    [SerializeField] private Transform _parents;
     [SerializeField] private Transform _player;
     [SerializeField] private ContentInfo[] _contentInfos;
     [SerializeField] private float _shift;
@@ -29,7 +30,7 @@ public class Store : MonoBehaviour
         for (int i = 0; i < _contentInfos.Length; i++)
         {
             GameObject platform = Instantiate(_platform);
-            platform.transform.SetParent(transform);
+            platform.transform.SetParent(_parents);
             platform.transform.localPosition = new Vector3(i * _shift, 0, 0);
             GameObject obj = Instantiate(_contentInfos[i]._content);
             obj.transform.SetParent(platform.transform);

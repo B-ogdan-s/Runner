@@ -6,7 +6,7 @@ using UnityEngine.UIElements;
 
 public class StoreUI : MonoBehaviour
 {
-
+    [SerializeField] private GameObject _contant;
     [SerializeField] private TextMeshProUGUI _name;
     [SerializeField] private TextMeshProUGUI _price;
     [SerializeField] private GameObject _button;
@@ -24,6 +24,7 @@ public class StoreUI : MonoBehaviour
     {
         _storeCanvas = GetComponent<Canvas>();
         _storeCanvas.enabled = false;
+        _contant.SetActive(false);
     }
 
     public void PointDown()
@@ -64,12 +65,14 @@ public class StoreUI : MonoBehaviour
 
     public void OpenStore()
     {
+        _contant.SetActive(true);
         _Open?.Invoke();
         _storeCanvas.enabled = true;
     }
 
     public void CloseStore()
     {
+        _contant.SetActive(false);
         _Close?.Invoke();
         _storeCanvas.enabled = false;
     }
